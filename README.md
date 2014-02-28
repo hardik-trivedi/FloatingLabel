@@ -9,6 +9,7 @@ FloatingLabel Allows you to create a blow kind of EditText.
 
 Floating Lable project is in initial mode, where a few customization is provided like changing Text color of EditText and Its Lable
 
+...
 <com.hardik.floatinglabel.FloatingLabelView
         android:id="@+id/label1"
         android:layout_width="fill_parent"
@@ -16,7 +17,7 @@ Floating Lable project is in initial mode, where a few customization is provided
         label:floatHintText="Whatever hint you want to display"
         label:textColor="@color/blue"
         label:textTypeface="some_custome_font.ttf"/>
-        
+...        
         
         
 
