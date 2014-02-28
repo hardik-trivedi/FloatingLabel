@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="FloatingLabel">
+
+        <!-- For Floating Hint -->
+        <attr name="floatHintText" format="string" />
+        <attr name="floatHintTextColor" format="color" />
+        <attr name="floatHintTextStyle">
+            <enum name="normal" value="0" />
+            <enum name="bold" value="1" />
+            <enum name="italic" value="2" />
+        </attr>
+        <attr name="floatHintTextGravity">
+            <enum name="top" value="0x30" />
+            <enum name="bottom" value="0x50" />
+            <enum name="left" value="0x03" />
+            <enum name="right" value="0x05" />
+        </attr>
+        <attr name="floatHintTextSize" format="integer" />
+        <attr name="floatHintTextTypeface" format="string" />
+        <!-- For actual Hint -->
+
+        <attr name="text" format="string" />
+        <attr name="textColor" format="color" />
+        <attr name="textStyle">
+            <enum name="normal" value="0" />
+            <enum name="bold" value="1" />
+            <enum name="italic" value="2" />
+        </attr>
+        <attr name="textGravity">
+            <enum name="top" value="0x30" />
+            <enum name="bottom" value="0x50" />
+            <enum name="left" value="0x03" />
+            <enum name="right" value="0x05" />
+        </attr>
+        <attr name="textSize" format="integer" />
+        <attr name="textTypeface" format="string" />
+        <attr name="textBackground" format="color|reference" />
+    </declare-styleable>
+
+</resources>
