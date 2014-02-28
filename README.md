@@ -4,4 +4,4 @@ FloatingLabel
 FloatingLabel
 
 
-![Animation Example](/form-animation-_gif_-1?raw=true)
+![Animation Example](https://github.com/hardik-trivedi/FloatingLabel/edit/master/form-animation-_gif_-1?raw=true)
