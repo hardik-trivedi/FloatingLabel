@@ -13,7 +13,8 @@
         floatview:floatHintTextColorFocused="@color/blue"
         floatview:floatHintTextColorUnFocused="@color/green"
         floatview:floatHintTextStyle="bold"
-        floatview:text="Label 1" />
+        floatview:text="Label 1"
+        floatview:textBackground="@drawable/edt_bg" />
 
     <com.hardik.floatinglabel.FloatingLabelView
         android:id="@+id/label2"
@@ -26,6 +27,7 @@
         floatview:floatHintTextStyle="bold"
         floatview:isPassword="true"
         floatview:text="Label 2"
+        floatview:textBackground="@drawable/edt_bg"
         floatview:textColor="@color/red"
         floatview:textSize="20" />
 
@@ -39,6 +41,7 @@
         floatview:floatHintTextGravity="left"
         floatview:floatHintTextSize="20"
         floatview:floatHintTextStyle="bold"
+        floatview:textBackground="@drawable/edt_bg"
         floatview:textColor="@color/yellow"
         floatview:textGravity="right"
         floatview:textStyle="italic" />
@@ -54,7 +57,7 @@
         floatview:floatHintTextSize="20"
         floatview:floatHintTextStyle="bold"
         floatview:floatHintTextTypeface="Ithornet.ttf"
-        floatview:textBackground="@drawable/ic_launcher"
+        floatview:textBackground="@drawable/edt_bg"
         floatview:textColor="@color/yellow"
         floatview:textGravity="right"
         floatview:textStyle="italic"
