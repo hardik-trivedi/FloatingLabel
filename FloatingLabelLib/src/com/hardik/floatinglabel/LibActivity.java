@@ -3,7 +3,7 @@ package com.hardik.floatinglabel;
 import android.app.Activity;
 import android.os.Bundle;
 
-public class MainActivity extends Activity {
+public class LibActivity extends Activity {
 	FloatingLabelView label1, label2;
 
 	@Override

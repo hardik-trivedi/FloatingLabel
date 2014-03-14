@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -80,9 +81,11 @@ public class FloatingLabelView extends LinearLayout implements
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
-				if (input.getText().toString().length() == 1) {
+				if (input.getText().toString().length() > 0
+						&& display.getVisibility() == INVISIBLE) {
 					showHint();
-				} else if (input.getText().toString().length() <= 0) {
+				} else if (input.getText().toString().length() == 0
+						&& display.getVisibility() == VISIBLE) {
 					hideHint();
 				}
 			}
@@ -98,7 +101,6 @@ public class FloatingLabelView extends LinearLayout implements
 				// TODO Auto-generated method stub
 			}
 		});
-
 	}
 
 	private void createDefaultLayout() {
@@ -110,17 +112,22 @@ public class FloatingLabelView extends LinearLayout implements
 
 		input.setTextAppearance(context, android.R.attr.textAppearanceMedium);
 		display.setTextAppearance(context, android.R.attr.textAppearanceSmall);
+
+		display.setPadding(5, 2, 5, 2);
 	}
 
 	private void createCustomLayout(AttributeSet attrs) {
+
 		TypedArray a = context.obtainStyledAttributes(attrs,
 				R.styleable.FloatingLabel, 0, 0);
 		// For Floating Hint
 
 		String floatHintText = a
 				.getString(R.styleable.FloatingLabel_floatHintText);
-		ColorStateList floatHintTextColor = a
-				.getColorStateList(R.styleable.FloatingLabel_floatHintTextColor);
+		ColorStateList floatHintTextColorFocused = a
+				.getColorStateList(R.styleable.FloatingLabel_floatHintTextColorFocused);
+		ColorStateList floatHintTextColorUnFocused = a
+				.getColorStateList(R.styleable.FloatingLabel_floatHintTextColorUnFocused);
 		int floatHintTextSize = a.getInt(
 				R.styleable.FloatingLabel_floatHintTextSize, 15);
 		String floatHintTextTypefaceName = a
@@ -129,7 +136,10 @@ public class FloatingLabelView extends LinearLayout implements
 				R.styleable.FloatingLabel_floatHintTextStyle, Typeface.NORMAL);
 		int floatHintTextGravity = a.getInt(
 				R.styleable.FloatingLabel_floatHintTextGravity, Gravity.LEFT);
+		Drawable floatHintTextBackground = a
+				.getDrawable(R.styleable.FloatingLabel_floatHintTextBackground);
 
+		// For Actual Text
 		String text = a.getString(R.styleable.FloatingLabel_text);
 		ColorStateList textColor = a
 				.getColorStateList(R.styleable.FloatingLabel_textColor);
@@ -140,15 +150,21 @@ public class FloatingLabelView extends LinearLayout implements
 				Typeface.NORMAL);
 		int textGravity = a.getInt(R.styleable.FloatingLabel_textGravity,
 				Gravity.LEFT);
+
 		Drawable textBackground = a
 				.getDrawable(R.styleable.FloatingLabel_textBackground);
+		boolean isPassword = a.getBoolean(R.styleable.FloatingLabel_isPassword,
+				false);
+
 		a.recycle();
 
 		setFloatHintText(floatHintText);
-		setFloatHintTextColor(floatHintTextColor);
+		setFloatHintTextColor(getColorStateList(floatHintTextColorFocused,
+				floatHintTextColorUnFocused));
 		setFloatHintTextSize(floatHintTextSize);
 		setFloatHintTypeFace(floatHintTextTypefaceName, floatHintTextStyle);
 		setFloatHintGravity(floatHintTextGravity);
+		setFloatHintTextBackGround(floatHintTextBackground);
 
 		setTextHint(floatHintText);
 		setTextColor(textColor);
@@ -157,7 +173,21 @@ public class FloatingLabelView extends LinearLayout implements
 		setTextGravity(textGravity);
 		setText(text);
 		setTextBackGround(textBackground);
+		setPassword(isPassword);
+	}
 
+	private ColorStateList getColorStateList(ColorStateList focused,
+			ColorStateList unfocused) {
+		int[][] states = new int[][] {
+				new int[] { android.R.attr.state_selected }, // selected
+				new int[] {} // default
+		};
+
+		int[] colors = new int[] {
+				(focused != null) ? focused.getDefaultColor() : Color.BLACK,
+				(unfocused != null) ? unfocused.getDefaultColor() : Color.GRAY };
+
+		return new ColorStateList(states, colors);
 	}
 
 	/** FOR LABEL **/
@@ -186,13 +216,25 @@ public class FloatingLabelView extends LinearLayout implements
 		}
 	}
 
-	private void setFloatHintText(String string) {
+	public void setFloatHintText(String string) {
 		if (string != null) {
 			display.setText(string);
 		}
 	}
 
+	private void setFloatHintTextBackGround(Drawable textBackground) {
+		input.setBackgroundDrawable(textBackground);
+	}
+
 	/** FOR TEXT **/
+
+	private void setPassword(boolean isPassword) {
+		// TODO Auto-generated method stub
+		if (isPassword) {
+			input.setTransformationMethod(PasswordTransformationMethod
+					.getInstance());
+		}
+	}
 
 	private void setTextBackGround(Drawable textBackground) {
 		input.setBackgroundDrawable(textBackground);
@@ -222,13 +264,13 @@ public class FloatingLabelView extends LinearLayout implements
 		}
 	}
 
-	private void setText(String string) {
+	public void setText(String string) {
 		if (string != null) {
 			input.setText(string);
 		}
 	}
 
-	private void setTextHint(String hintText) {
+	public void setTextHint(String hintText) {
 		if (hintText != null) {
 			input.setHint(hintText);
 		}
@@ -250,9 +292,17 @@ public class FloatingLabelView extends LinearLayout implements
 
 	@Override
 	public void onFocusChange(View v, boolean hasFocus) {
-		// TODO Auto-generated method stub
+		display.setSelected(hasFocus);
 		if (focusChangeListener != null) {
 			focusChangeListener.onFocusChange(this, hasFocus);
 		}
+	}
+
+	public String getText() {
+		return input.getText().toString();
+	}
+
+	public EditText getEditText() {
+		return input;
 	}
 }

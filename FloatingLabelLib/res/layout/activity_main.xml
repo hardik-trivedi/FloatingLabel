@@ -1,6 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:label="http://schemas.android.com/apk/res/com.hardik.floatinglabel"
+    xmlns:floatview="http://schemas.android.com/apk/res/com.hardik.floatinglabel"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -9,6 +9,55 @@
         android:id="@+id/label1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        label:floatHintText="@string/app_name" />
+        floatview:floatHintText="@string/app_name"
+        floatview:floatHintTextColorFocused="@color/blue"
+        floatview:floatHintTextColorUnFocused="@color/green"
+        floatview:floatHintTextStyle="bold"
+        floatview:text="Label 1" />
+
+    <com.hardik.floatinglabel.FloatingLabelView
+        android:id="@+id/label2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        floatview:floatHintText="@string/app_name"
+        floatview:floatHintTextColorFocused="@color/red"
+        floatview:floatHintTextGravity="right"
+        floatview:floatHintTextStyle="bold"
+        floatview:isPassword="true"
+        floatview:text="Label 2"
+        floatview:textColor="@color/red"
+        floatview:textSize="20" />
+
+    <com.hardik.floatinglabel.FloatingLabelView
+        android:id="@+id/label3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        floatview:floatHintText="@string/app_name"
+        floatview:floatHintTextColorFocused="@color/green"
+        floatview:floatHintTextGravity="left"
+        floatview:floatHintTextSize="20"
+        floatview:floatHintTextStyle="bold"
+        floatview:textColor="@color/yellow"
+        floatview:textGravity="right"
+        floatview:textStyle="italic" />
+
+    <com.hardik.floatinglabel.FloatingLabelView
+        android:id="@+id/label4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        floatview:floatHintText="@string/app_name"
+        floatview:floatHintTextColorFocused="@color/blue"
+        floatview:floatHintTextGravity="left"
+        floatview:floatHintTextSize="20"
+        floatview:floatHintTextStyle="bold"
+        floatview:floatHintTextTypeface="Ithornet.ttf"
+        floatview:textBackground="@drawable/ic_launcher"
+        floatview:textColor="@color/yellow"
+        floatview:textGravity="right"
+        floatview:textStyle="italic"
+        floatview:textTypeface="DroidSans-Bold.ttf" />
 
 </LinearLayout>

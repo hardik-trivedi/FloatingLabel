@@ -5,7 +5,8 @@
 
         <!-- For Floating Hint -->
         <attr name="floatHintText" format="string" />
-        <attr name="floatHintTextColor" format="color" />
+        <attr name="floatHintTextColorFocused" format="color" />
+        <attr name="floatHintTextColorUnFocused" format="color" />
         <attr name="floatHintTextStyle">
             <enum name="normal" value="0" />
             <enum name="bold" value="1" />
@@ -19,7 +20,8 @@
         </attr>
         <attr name="floatHintTextSize" format="integer" />
         <attr name="floatHintTextTypeface" format="string" />
-        <!-- For actual Hint -->
+        <attr name="floatHintTextBackground" format="color|reference" />
+        <!-- For actual Text -->
 
         <attr name="text" format="string" />
         <attr name="textColor" format="color" />
@@ -37,6 +39,7 @@
         <attr name="textSize" format="integer" />
         <attr name="textTypeface" format="string" />
         <attr name="textBackground" format="color|reference" />
+        <attr name="isPassword" format="boolean" />
     </declare-styleable>
 
 </resources>
