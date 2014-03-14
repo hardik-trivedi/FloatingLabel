@@ -15,9 +15,9 @@ Floating Lable project is in initial mode, where a few customization is provided
         android:id="@+id/label1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        floatview:floatHintText="Whatever hint you want to display"
-        floatview:textColor="@color/blue"
-        floatview:textTypeface="some_custome_font.ttf"/>
+        label:floatHintText="Whatever hint you want to display"
+        label:textColor="@color/blue"
+        label:textTypeface="some_custome_font.ttf"/>
 ```
 ##Features 
 * [Float Hint Text](#float-hint-text)
