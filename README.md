@@ -3,6 +3,7 @@ FloatingLabel
 
 FloatingLabel Allows you to create a blow kind of EditText.
 
+To explain the concept well I have taken below image from http://dribbble.com/shots/1254439--GIF-Float-Label-Form-Interaction
 
 ![Animation Example](/form-animation-_gif_-1.gif)
 
