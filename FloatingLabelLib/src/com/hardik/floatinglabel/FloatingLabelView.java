@@ -25,7 +25,6 @@ public class FloatingLabelView extends LinearLayout implements
 	final String TAG = getClass().getSimpleName();
 	private EditText input;
 	private TextView display;
-	private Context context;
 	private LinearLayout.LayoutParams inpuTextParams;
 	private LinearLayout.LayoutParams displayTextParams;
 	private Animation bottomUp, bottomDown;
@@ -33,22 +32,19 @@ public class FloatingLabelView extends LinearLayout implements
 
 	public FloatingLabelView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-		this.context = context;
 	}
 
 	public FloatingLabelView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		this.context = context;
-		createLayout(attrs);
+		createLayout(context, attrs);
 	}
 
 	public FloatingLabelView(Context context) {
 		super(context);
-		this.context = context;
-		createLayout(null);
+		createLayout(context, null);
 	}
 
-	private void createLayout(AttributeSet attrs) {
+	private void createLayout(Context context, AttributeSet attrs) {
 		input = new EditText(context);
 		display = new TextView(context);
 		input.setOnFocusChangeListener(this);
@@ -66,10 +62,10 @@ public class FloatingLabelView extends LinearLayout implements
 		input.setLayoutParams(inpuTextParams);
 		display.setLayoutParams(displayTextParams);
 		setOrientation(LinearLayout.VERTICAL);
-		createDefaultLayout();
+		createDefaultLayout(context);
 
 		if (attrs != null) {
-			createCustomLayout(attrs);
+			createCustomLayout(context, attrs);
 		}
 
 		addView(display);
@@ -103,7 +99,7 @@ public class FloatingLabelView extends LinearLayout implements
 		});
 	}
 
-	private void createDefaultLayout() {
+	private void createDefaultLayout(Context context) {
 		input.setGravity(Gravity.LEFT | Gravity.TOP);
 		display.setGravity(Gravity.LEFT);
 
@@ -116,7 +112,7 @@ public class FloatingLabelView extends LinearLayout implements
 		display.setPadding(5, 2, 5, 2);
 	}
 
-	private void createCustomLayout(AttributeSet attrs) {
+	private void createCustomLayout(Context context, AttributeSet attrs) {
 
 		TypedArray a = context.obtainStyledAttributes(attrs,
 				R.styleable.FloatingLabel, 0, 0);
@@ -162,14 +158,14 @@ public class FloatingLabelView extends LinearLayout implements
 		setFloatHintTextColor(getColorStateList(floatHintTextColorFocused,
 				floatHintTextColorUnFocused));
 		setFloatHintTextSize(floatHintTextSize);
-		setFloatHintTypeFace(floatHintTextTypefaceName, floatHintTextStyle);
+		setFloatHintTypeFace(context, floatHintTextTypefaceName, floatHintTextStyle);
 		setFloatHintGravity(floatHintTextGravity);
 		setFloatHintTextBackGround(floatHintTextBackground);
 
 		setTextHint(floatHintText);
 		setTextColor(textColor);
 		setTextSize(textSize);
-		setTextTypeFace(textTypefaceName, textStyle);
+		setTextTypeFace(context, textTypefaceName, textStyle);
 		setTextGravity(textGravity);
 		setText(text);
 		setTextBackGround(textBackground);
@@ -195,7 +191,7 @@ public class FloatingLabelView extends LinearLayout implements
 		display.setGravity(floatHintTextGravity);
 	}
 
-	private void setFloatHintTypeFace(String floatHintTextTypefaceName,
+	private void setFloatHintTypeFace(Context context, String floatHintTextTypefaceName,
 			int floatHintTextStyle) {
 		try {
 			Typeface face = Typeface.createFromAsset(context.getAssets(),
@@ -244,7 +240,7 @@ public class FloatingLabelView extends LinearLayout implements
 		input.setGravity(textGravity);
 	}
 
-	private void setTextTypeFace(String textTypefaceName, int textStyle) {
+	private void setTextTypeFace(Context context, String textTypefaceName, int textStyle) {
 		try {
 			Typeface face = Typeface.createFromAsset(context.getAssets(),
 					textTypefaceName);
