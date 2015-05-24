@@ -41,7 +41,9 @@ public class FloatingLabelView extends LinearLayout implements
 
 	public FloatingLabelView(Context context) {
 		super(context);
-		createLayout(null);
+		if (!isInEditMode()) {
+			createLayout(null);
+		}
 	}
 
 	private void createLayout(AttributeSet attrs) {
